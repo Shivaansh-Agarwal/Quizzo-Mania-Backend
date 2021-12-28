@@ -1,4 +1,5 @@
 const express = require("express");
+var cors = require('cors');
 
 const { initializeDBConnection } = require("./db/connection.db.js");
 const { errorHandler } = require("./middlewares/errorHandler.js");
@@ -20,6 +21,7 @@ const app = express();
 initializeDBConnection();
 
 // Middlewares
+app.use(cors())
 app.use(express.json());
 app.use(logger);
 

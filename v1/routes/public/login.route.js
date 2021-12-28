@@ -8,16 +8,21 @@ const router = express.Router();
 router
   .route("/")
   .post(
-    checkIfBothUsernamePasswordPresent,
+    checkIfBothEmailPasswordPresentInPayload,
     checkIfEmailExists,
     checkPasswordAuthenticity,
     generateToken,
     async (req, res) => {
-      const { authorizationToken } = req;
+      const { authorizationToken, user } = req;
+      const { email, username, quizAttempted, isDarkModeSelected } = user;
       res.status(200).json({
         status: "success",
         data: {
-          authorizationToken,
+          email,
+          username,
+          quizAttempted,
+          isDarkModeSelected,
+          authorizationToken
         },
       });
     }
@@ -32,7 +37,7 @@ router.use("/", (err, req, res, next) => {
   });
 });
 
-function checkIfBothUsernamePasswordPresent(req, res, next) {
+function checkIfBothEmailPasswordPresentInPayload(req, res, next) {
   if (req.body.email && req.body.password) {
     next();
   } else {

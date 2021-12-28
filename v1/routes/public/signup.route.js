@@ -28,7 +28,7 @@ router
       console.log("Signup Successful.\n", result);
       res.status(201).json({
         status: "success",
-        data: [],
+        data: null,
         message: "Signup Successful.",
       });
     }
@@ -97,6 +97,7 @@ async function checkIfUsernameOrEmailAlreadyExists(req, res, next) {
     username,
     email,
     quizAttempted: [],
+    isDarkModeSelected: false
   };
   next();
 }

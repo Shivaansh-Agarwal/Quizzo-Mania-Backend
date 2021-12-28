@@ -13,6 +13,9 @@ const userSchema = new Schema(
       type: String,
     },
     quizAttempted: [String],
+    isDarkModeSelected: {
+      type: Boolean
+    }
   },
   {
     timestamps: {

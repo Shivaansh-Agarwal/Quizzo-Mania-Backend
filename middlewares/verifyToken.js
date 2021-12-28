@@ -1,9 +1,9 @@
 const jwt = require("jsonwebtoken");
 
 async function verifyToken(req, res, next) {
-  const bearerToken = req.headers.authorization;
-  const token = bearerToken.split(" ")[1];
-  if (token) {
+  if (req.headers.authorization) {
+    const bearerToken = req.headers.authorization;
+    const token = bearerToken.split(" ")[1];
     const PRIVATE_KEY = process.env["PRIVATE_KEY"];
     try {
       const decoded = await jwt.verify(token, PRIVATE_KEY);

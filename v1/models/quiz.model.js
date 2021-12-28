@@ -13,6 +13,9 @@ const quizSchema = new Schema(
     category: {
       type: "String",
     },
+    thumbnail: {
+      type: "String"
+    }
   },
   {
     timestamps: {
