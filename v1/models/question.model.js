@@ -19,11 +19,12 @@ const questionSchema = new Schema({
 });
 
 const quizQuestionsSchema = new Schema({
-  _id: Schema.Types.ObjectId,
   quizId: {
     type: Schema.Types.ObjectId,
     ref: "Quizze",
   },
+  correctAnsPoints: Number,
+  wrongAnsPoints: Number,
   questions: [questionSchema],
 });
 

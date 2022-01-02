@@ -11,6 +11,7 @@ const {
 const {
   questionsRouter,
   quizzesRouter,
+  userRouter,
   signupRouter,
   loginRouter,
 } = require("./v1/routes");
@@ -30,6 +31,7 @@ app.use("/signup", signupRouter);
 app.use("/login", loginRouter);
 app.use("/api/v1/questions", questionsRouter);
 app.use("/api/v1/quizzes", quizzesRouter);
+app.use("/api/v1/user", userRouter);
 
 app.get("/", (req, res) => {
   res.send("Quiz App Server - by Shivaansh");
