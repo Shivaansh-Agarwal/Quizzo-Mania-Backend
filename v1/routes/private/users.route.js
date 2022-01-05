@@ -6,7 +6,9 @@ const router = express.Router();
 
 router.route("/").post(verifyToken, async function(req, res) {
   try {
+    console.log("Inside user route 1");
     const { email, completedQuizId } = req.body;
+    console.log(email, completedQuizId);
     // Find the relevant Document from the DB
     const response1 = await User.find({
       email: email
@@ -20,12 +22,19 @@ router.route("/").post(verifyToken, async function(req, res) {
           _id: response1[0]._id
         }, { $addToSet: { quizAttempted: completedQuizId}
         });
-        const doc = await User.findOne();
+        const response3 = await User.find({
+          _id: response1[0]._id
+        });
         console.log("User Details Updated");
-        console.log(doc);
+        console.log(response3);
         res.status(200).json({
           status: 'success',
-          data: doc
+          data: response3[0]
+        });
+      } else {
+        res.status(204).json({
+          status: 'no update',
+          data: null,
         });
       }
     } else {
